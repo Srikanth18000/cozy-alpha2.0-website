@@ -3,7 +3,7 @@ import openai
 
 openai.api_key = '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'
 
-server = Flask(__name__)
+app = Flask(__name__)
 
 def send_gpt(prompt):
     try:
@@ -16,7 +16,7 @@ def send_gpt(prompt):
         return e
 
 
-@server.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def get_request_json():
     if request.method == 'POST':
         if len(request.form['question']) < 1:
@@ -33,4 +33,4 @@ def get_request_json():
     return render_template('chat3.5.html', question=0)
 
 if __name__ == '__main__':
-    server.run(debug=True)
+    app.run(debug=True)
